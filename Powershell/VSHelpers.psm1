@@ -1,6 +1,4 @@
-﻿
-
-function Parse-CsprojRefs() {
+﻿function Parse-CsprojRefs() {
     Process {
         [xml] $axml= Get-Content $_.FullName
         $ns = new-object Xml.XmlNamespaceManager $axml.NameTable
@@ -17,9 +15,6 @@ function Parse-CsprojRefs() {
         }
     }
 } 
-write-host Loaded Parse-CsprojRefs... -ForegroundColor Gray
-
-
 
 function Get-CsprojRefs() {
     Process {        
@@ -27,18 +22,48 @@ function Get-CsprojRefs() {
     }
 
 }
-write-host Loaded Get-CsprojRefs... -ForegroudColor gray
 
+function Get-Refs-Lib() {
+    Get-CsprojRefs | Where-Object {  $_.Path -ne $null -and $_.Path.StartsWith("..\..\lib") }
+}
+
+function Get-Refs-Package() {
+    Get-CsprojRefs | Where-Object {  $_.Path -ne $null -and $_.Path.StartsWith("..\packages") }
+}
+
+
+function Get-RefsPath() {
+    Param([string]$Name="System.Web")
+    
+    (Get-Project -all).Object.References  | Where-Object { $_.Name -eq $Name } | Select-Object Identity, Path
+}
+
+function Test-Dte {
+
+    $sln = [EnvDTE.Solution]$dte.Solution;
+
+     $sln.Projects
+
+    write-host $sln.Count
+
+}
 
 # Get refs All
 New-Alias gra Get-CsprojRefs 
 
 #Get refs lib
-New-Alias grl Get-CsprojRefs | Where-Object {  $_.Path -ne $null -and $_.Path.StartsWith("..\..\lib") }
+New-Alias grl Get-Refs-Lib
 
-#Get regs package
-New-Alias grp Get-CsprojRefs | Where-Object {  $_.Path -ne $null -and $_.Path.StartsWith("..\packages") }
+#Get refs package
+New-Alias grp Get-Refs-Package
 
-write-host Set aliases gra grl grp ... -ForegroudColor gray
+Export-ModuleMember -Function Get-CsprojRefs
+Export-ModuleMember -Function Get-Refs-Lib
+Export-ModuleMember -Function Get-Refs-Package
 
-write-host thankyoucomeagain! ... -ForegroudColor gray
+Export-ModuleMember -Function Test-Dte
+Export-ModuleMember -Function Get-RefsPath
+
+Export-ModuleMember -Alias gra
+Export-ModuleMember -Alias grl
+Export-ModuleMember -Alias grp

@@ -1,14 +1,11 @@
-﻿
-
-#Powershell Reference: https://docs.nuget.org/ndocs/tools/powershell-reference
+﻿#Powershell Reference: https://docs.nuget.org/ndocs/tools/powershell-reference
 
 #Solution
 #https://lostechies.com/erichexter/2010/10/07/using-solution-factory-nupack-to-create-opinionated-visual-studio-solutions/
 
-
+#
 #Visual Studio automation
-
-
+#
 
 Add-Type -Path  'C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\PublicAssemblies\EnvDTE.dll'
 
@@ -32,7 +29,16 @@ $sln = [EnvDTE.Solution]$dte.Solution
 
 Get-Project -all
 
+
+#
+# List all references 
+#
+(Get-Project -Name Nhsic.ClinicalAudit.Nboca.Web).Object.References  | Where-Object { $_.Name -eq "Castle.Core" } | Select-Object ContainingProject.ProjectName, Identity, Path
+
+
+#
 # Add a reference
+#
 (Get-Project -Name Nhsic.ClinicalAudit.Nboca.Web).Object.References.Add("System.Web")
 
 function psuedocode() {
