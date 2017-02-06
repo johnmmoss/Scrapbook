@@ -1,4 +1,4 @@
-﻿function Parse-CsprojRefs() {
+﻿startfunction Parse-CsprojRefs() {
     Process {
         [xml] $axml= Get-Content $_.FullName
         $ns = new-object Xml.XmlNamespaceManager $axml.NameTable

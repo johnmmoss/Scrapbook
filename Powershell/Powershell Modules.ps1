@@ -2,7 +2,9 @@
 
 
 # The following command prints possible path locations:
-$env:PSModulePath 
+$env:PSModulePath.Split(';') | % { start $_ }
+
+C:\Users\d-jmoss\Documents\WindowsPowerShell\Modules\VSHelpers
 
 C:\Users\d-jmoss\Documents\WindowsPowerShell\Modules;
 C:\Program Files\WindowsPowerShell\Modules;
