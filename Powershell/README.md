@@ -3,6 +3,8 @@
 
 # Powershell
 
+[Powershell Naming Best Practices](https://msdn.microsoft.com/en-us/library/ms714428(v=vs.85).aspx)
+
 ## PowershellGet
 
 Package management for Powershell... 
