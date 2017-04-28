@@ -19,9 +19,9 @@ Build tool based on powershell<br>
 Testing framework for Powershell: [https://github.com/pester/Pester](https://github.com/pester/Pester)
 
 ### Pester Tutorials
-*[http://www.powershellmagazine.com/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/](http://www.powershellmagazine.com/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/)
-*[http://www.powershellmagazine.com/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/](http://www.powershellmagazine.com/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/)
-([https://github.com/PowerShell/PowerShell/blob/master/docs/testing-guidelines/WritingPesterTests.md](https://github.com/PowerShell/PowerShell/blob/master/docs/testing-guidelines/WritingPesterTests.md)
+[http://www.powershellmagazine.com/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/](http://www.powershellmagazine.com/2014/03/12/get-started-with-pester-powershell-unit-testing-framework/)
+[http://www.powershellmagazine.com/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/](http://www.powershellmagazine.com/2014/03/27/testing-your-powershell-scripts-with-pester-assertions-and-more/)
+[https://github.com/PowerShell/PowerShell/blob/master/docs/testing-guidelines/WritingPesterTests.md](https://github.com/PowerShell/PowerShell/blob/master/docs/testing-guidelines/WritingPesterTests.md)
 
 
 ## Project structure
