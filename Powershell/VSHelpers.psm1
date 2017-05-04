@@ -1,4 +1,9 @@
-﻿startfunction Parse-CsprojRefs() {
+﻿# Set prompt
+ 
+ function prompt { "[" + $Env:username +  "] -> " }
+ 
+ 
+ startfunction Parse-CsprojRefs() {
     Process {
         [xml] $axml= Get-Content $_.FullName
         $ns = new-object Xml.XmlNamespaceManager $axml.NameTable
