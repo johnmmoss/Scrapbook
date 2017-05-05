@@ -18,13 +18,32 @@ function Remove-WebSite() {
 # http://geekswithblogs.net/QuandaryPhase/archive/2013/02/24/create-iis-app-pool-and-site-with-windows-powershell.aspx
 # https://www.iis.net/configreference/system.applicationhost/applicationpools/add/processmodel
 
+Create-Website -Name "TMGUserAuthorisationService" -Port "9765"
+
 function Create-Website() {
 
-    $iisAppPoolName = "AppPool1"
+    Param(
+        $Name = $null,
+        $Port = $null,
+        $WebRoot = "E:\Websites"
+    )
+
+    if ($Name -eq $null) {
+
+        write-host Please provide the name of the site to create
+        return
+    }
+
+    if ($Port -eq $null) {
+        
+        write-host Please provide the port for the site
+        return
+    }
+
+    $iisAppPoolName = $name
     $iisAppPoolDotNetVersion = "v4.0"
-    $iisAppName = "Website1"
-    $directoryPath = "D:\git\WebSite\src"
-    $port = "49006"
+    $iisAppName = $name
+    $directoryPath = "$WebRoot\$name"
     $bindingInformation = ":" + $port + ":"
 
     #navigate to the app pools root
@@ -36,9 +55,9 @@ function Create-Website() {
         #create the app pool
         $appPool = New-Item $iisAppPoolName
         $appPool | Set-ItemProperty -Name "managedRuntimeVersion" -Value $iisAppPoolDotNetVersion
-        $appPool | Set-ItemProperty -Name "processModel.identityType" -value 0
+        $appPool | Set-ItemProperty -Name "processModel.identityType" -value 4 # https://www.iis.net/configreference/system.applicationhost/applicationpools/add/processmodel
 
-        write-host Created AppPool ClinicalAudit -ForegroundColor green
+        write-host Created AppPool: $iisAppPoolName -ForegroundColor green
 
     } else {
         
@@ -60,8 +79,5 @@ function Create-Website() {
     $iisApp = New-Item $iisAppName -bindings @{protocol="http";bindingInformation=$bindingInformation} -physicalPath $directoryPath
     $iisApp | Set-ItemProperty -Name "applicationPool" -Value $iisAppPoolName   
 
-    write-host Created AppPool $iisAppPoolName -ForegroundColor green
+    write-host Created Website: $iisAppPoolName -ForegroundColor green
 }
-
-
-New-WebApplication -Name "VirtualDirectory1" -Site 'Website1' -PhysicalPath "D:\svn\VirrtualDirectory1\src\Web1" -ApplicationPool "AppPool1" 
