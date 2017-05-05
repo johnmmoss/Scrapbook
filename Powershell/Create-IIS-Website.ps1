@@ -18,7 +18,7 @@ function Remove-WebSite() {
 # http://geekswithblogs.net/QuandaryPhase/archive/2013/02/24/create-iis-app-pool-and-site-with-windows-powershell.aspx
 # https://www.iis.net/configreference/system.applicationhost/applicationpools/add/processmodel
 
-Create-Website -Name "TMGUserAuthorisationService" -Port "9765"
+Create-Website -Name "MyWebsite" -Port "8080"
 
 function Create-Website() {
 
