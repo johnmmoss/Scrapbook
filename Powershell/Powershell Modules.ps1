@@ -1,4 +1,20 @@
-﻿#There is a $profile variable that you can use to figure out where that location is for your machine
+
+
+# Get modules that have been imported into the current session
+Get-Module 
+
+# Get installed modules and available modules
+Get-Module -ListAvailable -Name sqlps
+
+# load a module if not already loaded
+if (-NOT (Get-Module -Name sqlps)) {
+	
+	write-host Loading sqlps module -ForegroundColor Gray
+	import-module sqlps
+}
+
+    
+#There is a $profile variable that you can use to figure out where that location is for your machine
 
 
 # The following command prints possible path locations:
