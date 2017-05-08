@@ -56,7 +56,8 @@ function New-Website() {
         $appPool = New-Item $iisAppPoolName
         $appPool | Set-ItemProperty -Name "managedRuntimeVersion" -Value $iisAppPoolDotNetVersion
         $appPool | Set-ItemProperty -Name "processModel.identityType" -value 4 # https://www.iis.net/configreference/system.applicationhost/applicationpools/add/processmodel
-
+        $appPool | Set-ItemProperty -Name "enable32bitapponwin64" -value true 
+        
         write-host Created AppPool: $iisAppPoolName -ForegroundColor green
 
     } else {
