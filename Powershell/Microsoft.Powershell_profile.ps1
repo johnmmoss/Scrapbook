@@ -42,11 +42,16 @@ function WARN {
     }
 }
 
-DEBUG "Loading profile..." 
+function show-profiles () {
+    $PROFILE | Format-List * -Force
+}
 
-DEBUG "Setting prompt..."
+INFO "Loading profile..." 
+INFO "Setting prompt..."
 
 function prompt { "[" + $Env:username +  "] -> " }
+
+CLEAR
 
 
 
