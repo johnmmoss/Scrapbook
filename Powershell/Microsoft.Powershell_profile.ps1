@@ -1,4 +1,10 @@
 
+
+# E:\Scripts\start-console.bat - "C:\Program Files\ConEmu\ConEmu64.exe" /config "shell" /dir "c:\" /cmd powershell -noexit -new_console:a
+#  -> https://blogs.technet.microsoft.com/heyscriptingguy/2012/05/21/understanding-the-six-powershell-profiles/
+# Show Profiles: 
+#  -> $PROFILE | Format-List *
+
 Import-Module 'C:\tools\poshgit\dahlbyk-posh-git-a4faccd\src\posh-git.psd1'
 
 function DEBUG {
@@ -39,8 +45,6 @@ function WARN {
 DEBUG "Loading profile..." 
 
 DEBUG "Setting prompt..."
-
-
 
 function prompt { "[" + $Env:username +  "] -> " }
 
