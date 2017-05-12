@@ -30,3 +30,8 @@ Testing framework for Powershell: [https://github.com/pester/Pester](https://git
 Advice for structuring a powershell project...<br>
 
 [https://ramblingcookiemonster.github.io/Building-A-PowerShell-Module/](https://ramblingcookiemonster.github.io/Building-A-PowerShell-Module/)
+
+
+## Console Setup
+* [http://powertab.codeplex.com/](http://powertab.codeplex.com/)
+* [http://conemu.github.io/en/TabCompletion.html](http://conemu.github.io/en/TabCompletion.html)
