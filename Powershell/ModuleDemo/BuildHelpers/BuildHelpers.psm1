@@ -21,7 +21,7 @@
     # Set variables visible to the module and its functions only
 
 	
-write-host Public.Basename $Public.Basename
+write-host import member Public.Basename $Public.Basename -ForegroundColor Gray
 
 #Export-ModuleMember -Function $Public.Basename
 Export-ModuleMember -Function $Public.Basename
