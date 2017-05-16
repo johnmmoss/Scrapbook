@@ -1,4 +1,6 @@
 
+Import-Module SQLPS -DisableNameChecking
+
 #Create-Login -loginName "XXX1" -password "Password1!"
 
 function Create-Login() {
