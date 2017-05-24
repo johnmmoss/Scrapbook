@@ -8,7 +8,7 @@ Create-SqlDatabase -name "AcmeDriver"
 
 Create-SqlLogin -name "authuser" -Database "AcmeDriver"
 
-Create-SqlDatabase -server 'local'
+Publish-SqlDatabase -server 'local'
 
 Create-IISWebsite -Name "AcmeCustomerService" -Port 8080
 
