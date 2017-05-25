@@ -29,3 +29,18 @@ Publish-Module -Name  BuildHelpers -Repository InternalPowerShellModules -NuGetA
 
 # 4.) Now if we search the module we can find it
 Find-Module -Name BuildHelpers -Repository  InternalPowerShellModules # | Install-Module
+
+#5.) Import module 
+Import-Module -Name BuildHelpers 
+
+#################################################################
+# INSTALLING FROM LOCAL POWERSHELL FEED MACHINE PREP...
+#
+# 1.) Check version and update Powershell to version 4
+# 2.) Install Powershell Get - https://www.powershellgallery.com/
+# 3.) Set Execution Policy to Unrestricted
+# 4.) Import-Module PowershellGet
+# 5.) Nuget needs to be a specific version, will automatically update (you need to click yes!)  
+# 6.) Once the module is installed, you then need to import it
+#
+#################################################################
