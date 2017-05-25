@@ -23,13 +23,14 @@ function Get-CsprojRefs() {
 
 }
 
+# Create some aliases
 New-Alias gra Get-CsprojRefs 
 
 New-Alias grl Get-CsprojRefs | Where-Object {  $_.Path -ne $null -and $_.Path.StartsWith("..\..\lib") }
 
 New-Alias grp Get-CsprojRefs | Where-Object {  $_.Path -ne $null -and $_.Path.StartsWith("..\packages") }
 
-
+# Example usage...
 gci $src -Recurse -Filter *.csproj |
     Select-Csproj-Refs |
     Where-Object {  $_.Path -ne $null -and $_.Path.StartsWith("..\..\lib") }  | 
