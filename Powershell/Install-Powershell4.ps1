@@ -1,10 +1,9 @@
-
-# Note that theres a bug x86 never runs :(
+# install-powershell4 -Is32Bit
 
 function Install-Powershell4() {
 
     Param(
-        $64Bit = $true
+        [switch]$Is32Bit
     )
 
     $currentPsVersion = (get-host).Version.Major;
@@ -16,7 +15,7 @@ function Install-Powershell4() {
 
     $ps4DownloadUrl = "http://download.microsoft.com/download/3/D/6/3D61D262-8549-4769-A660-230B67E15B25/Windows6.1-KB2819745-x64-MultiPkg.msu"
 
-    if ($64Bit -eq $false) {
+    if ($Is32Bit) {
         $ps4DownloadUrl = "https://download.microsoft.com/download/3/D/6/3D61D262-8549-4769-A660-230B67E15B25/Windows6.1-KB2819745-x86-MultiPkg.msu"
     }
     
@@ -33,8 +32,17 @@ function Install-Powershell4() {
     write-host Windows Update exe path: $wusaPath -ForegroundColor gray
  
     $command = "$wusaPath $ps4LocalPath /quiet /norestart"
-
     write-host Executing command [$command]
 
     iex ($command)
+
+    do {
+    
+        write-host Installing dotnet452...  -ForegroundColor Gray
+
+        start-sleep -s 10
+
+    } while ((get-process | where { $_.ProcessName -eq "wusa" }) -ne $Null)
+    
+    write-host Installation script complete -ForegroundColor green
 }
