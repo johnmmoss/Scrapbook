@@ -6,8 +6,8 @@ function install-dotnet452 {
     $dotnet452LocalPath = "$env:temp\dotnet452.exe"
     
     write-host Starting scripted install of dotnet452 -ForegroundColor green
-    write-host Downloading dotnet452 from $dotnet452Url -ForegroundColor gray
-    write-host Saving dotnet452 to $dotnet452LocalPath -ForegroundColor gray
+    write-host Downloading dotnet452 from $dotnet452Url
+    write-host Saving dotnet452 to $dotnet452LocalPath
     
     ((New-Object System.Net.WebClient).DownloadFile($dotnet452Url, $dotnet452LocalPath))
     
