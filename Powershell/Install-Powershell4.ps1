@@ -38,7 +38,7 @@ function Install-Powershell4() {
 
     do {
     
-        write-host Installing dotnet452...  -ForegroundColor Gray
+        write-host Installing powershell 4.0...  -ForegroundColor Gray
 
         start-sleep -s 10
 
