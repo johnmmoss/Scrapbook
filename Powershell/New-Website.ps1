@@ -1,12 +1,14 @@
-
-Import-Module WebAdministration
-
 # http://geekswithblogs.net/QuandaryPhase/archive/2013/02/24/create-iis-app-pool-and-site-with-windows-powershell.aspx
 # https://www.iis.net/configreference/system.applicationhost/applicationpools/add/processmodel
+
 
 # Creates a new website with app pool of the same name for .net application
 New-Website -Name "Website1" -Port 8080
 New-Website -Name "Website2" -Port 8081 -IsSsl True
+
+# New-Website
+
+Import-Module WebAdministration
 
 function New-Website() {
 
