@@ -17,15 +17,19 @@ Test-wsman MyComputer-01 -Authentication Kerberos -Credential $Credential
 winrm get winrm/config 
 
 # Enumerate Listeners
-winrm e winrm/config
 winrm e winrm/config/listener
 
-# Create a listeners
+# Create HTTP listeners
 winrm quickconfig
+
+# Create HTTPS listeners
 winrm quickconfig -transport:https
 
-#delete listener
+#delete HTTP listener
 winrm delete winrm/config/Listener?Address=*+Transport=HTTP
+
+#delete HTTPS listener
+winrm delete winrm/config/Listener?Address=*+Transport=HTTPS
 
 #
 # Win rs can be used to run remote commands
