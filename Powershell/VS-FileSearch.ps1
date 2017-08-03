@@ -62,7 +62,7 @@ function Show-Refs() {
     }
 
     gci -Path $src_root -Filter *.sln -Recurse  |  % {
-        $hasServiceLayer = (select-string "^Project.*`"ServiceLayer`"" $_.FullName).Matches.Count
+        $hasServiceLayer = (select-string "^Project.*`"$ProjectName`"" $_.FullName).Matches.Count
 
         if ($hasServiceLayer -gt 0) {
             write-host $_.FullName   -ForegroundColor green
