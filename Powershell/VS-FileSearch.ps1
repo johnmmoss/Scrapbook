@@ -1,29 +1,26 @@
 
 # Show all sln files in the src root
-Show-Slns
+#Get-Slns
 
 # Show all projects for a given solution
-Show-Csprojs "E:\Code\Website1.sln"
+#Get-SlnRefs "E:\Code\Website1.sln"
 
 # Show all solutions that reference a given project
-Show-Refs ServiceLayer
+#Show-Refs ServiceLayer
 
-# Show all projects for all solutions
-Show-Slns | % {
-    write-host $_.Name -ForegroundColor Magenta
+# Show all references in a project
+#Get-ProjRefs "E:\Code\Library\ServiceLayer\ServiceLayer.csproj"
 
-    Show-Csprojs $_.FullName | % {
-        write-host --> $_.Name
-    }
-}
+# Show all solutions that use a particular project
+#Show-ProjUsages ServiceLayer
 
 $src_root = "E:\Code"
 
-function Show-Slns() {
+function Get-Slns() {
     gci -Path $src_root -Filter *.sln -Recurse | select Name, FullName
 }
 
-function Show-Csprojs() {
+function Get-SlnRefs() {
     param($SlnPath = $null)
     
     if($SlnPath -eq $null) {
@@ -55,7 +52,25 @@ function Show-Csprojs() {
     }
 }
 
-function Show-Refs() {
+function Get-ProjRefs() {
+        Param($path)
+        [xml] $axml= Get-Content $path
+        $ns = new-object Xml.XmlNamespaceManager $axml.NameTable
+        $ns.AddNamespace("d", "http://schemas.microsoft.com/developer/msbuild/2003")
+        $nodes = $axml.SelectNodes( "/d:Project/d:ItemGroup/d:Reference", $ns)
+    
+        foreach ($node in $nodes) {
+            $object = New-Object –TypeName PSObject
+            $object | Add-Member -MemberType NoteProperty –Name File –Value (split-path $path -leaf)
+            $object | Add-Member –MemberType NoteProperty –Name Name –Value $node.Include
+            $object | Add-Member –MemberType NoteProperty –Name Path –Value $node.HintPath
+         
+            $object
+        }
+    
+} 
+
+function Show-ProjUsage() {
     Param($ProjectName = $null)
 
     if($ProjectName -eq $null) {
@@ -64,9 +79,9 @@ function Show-Refs() {
     }
 
     gci -Path $src_root -Filter *.sln -Recurse  |  % {
-        $hasServiceLayer = (select-string "^Project.*`"$ProjectName`"" $_.FullName).Matches.Count
+        $exists = (select-string "^Project.*`"$ProjectName`"" $_.FullName).Matches.Count
 
-        if ($hasServiceLayer -gt 0) {
+        if ($exists -gt 0) {
             write-host $_.FullName   -ForegroundColor green
         } else {
             write-host $_.FullName -ForegroundColor gray
