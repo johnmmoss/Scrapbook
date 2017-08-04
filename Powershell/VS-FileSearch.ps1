@@ -41,12 +41,14 @@ function Show-Csprojs() {
         
             $matches = [Regex]::Matches($_.Line, $pattern)
         
-            $name = $matches[0].Groups[1]
-            $path = $matches[0].Groups[2]
+            $name = $matches[0].Groups[1].Value
+            $path = $matches[0].Groups[2].Value
+            $fullPath = (Resolve-Path ((Split-path $SlnPath -Parent) + "\" + $path)).Path
 
             $object = New-Object –TypeName PSObject
             $object | Add-Member -MemberType NoteProperty –Name Name –Value $name
             $object | Add-Member –MemberType NoteProperty –Name Path –Value $path
+            $object | Add-Member –MemberType NoteProperty –Name FullPath –Value $fullpath
          
             $object
         }
