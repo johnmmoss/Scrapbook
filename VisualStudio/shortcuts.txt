@@ -53,10 +53,3 @@ Shortcut to tail all project logs... visual studio powershell command?
 	- Elmah
 	
 Check ELMAH from command line vs ps
-
-Process
-----------------------
-
-How to find out what version of a library (e.g. Webtools) an audit is using (e.g. FGM)
-- wrap "svn list http//<url>" in some powershell to create dsl which reports on status
-Powershell to produce the table in Audit Library Status
