@@ -1,0 +1,5 @@
+choco install VisualStudio2017Professional -y
+choco install visualstudio2017-workload-netcrossplat -y
+choco install visualstudio2017-workload-webcrossplat -y
+choco install visualstudio2017-workload-azure -y
+choco install visualstudio2017-powershelltools -y
