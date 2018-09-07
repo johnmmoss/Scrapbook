@@ -1,6 +1,3 @@
-
-iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-
 choco install 7zip -y
 choco install notepadplusplus -y
 choco install winmerge -y
