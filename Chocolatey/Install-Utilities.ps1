@@ -11,10 +11,7 @@ choco install sysinternals -y
 choco install treesizefree -y
 choco install git -y
 choco install nssm -y
-choco install slack -y
-choco install docker-for-windows -y
 choco install visualstudiocode -y
-choco install visualstudio2017professional -y
 choco install rdcman -y
 choco install conemu -y
 choco install powertab -y
